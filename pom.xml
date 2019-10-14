@@ -11,6 +11,7 @@
     <modules>
         <module>mall-data</module>
         <module>mall-admin</module>
+        <module>mall-front</module>
     </modules>
 
     <parent>
