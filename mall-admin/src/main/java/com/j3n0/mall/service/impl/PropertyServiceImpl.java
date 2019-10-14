@@ -38,10 +38,10 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public int create(Property property) {
         int count;
+        Property propertySaved = propertyRepository.save(property);
         //创建属性时初始化关联产品的属性值
-        List<PropertyValue> propertyValues = createPropertyValues(property);
+        List<PropertyValue> propertyValues = createPropertyValues(propertySaved);
         propertyValueRepository.saveAll(propertyValues);
-        propertyRepository.save(property);
         count = 1;
         return count;
     }
