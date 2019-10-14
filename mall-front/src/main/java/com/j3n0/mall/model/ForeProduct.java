@@ -13,5 +13,5 @@ public class ForeProduct {
 
     private List<ProductImage> productImages;
 
-    private List<PropertyValues> propertyValues;
+    private List<PropertyValue> propertyValues;
 }
