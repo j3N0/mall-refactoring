@@ -1,7 +1,10 @@
 package com.j3n0.mall.service.impl;
 
 import com.j3n0.mall.dao.ProductDAO;
-import com.j3n0.mall.model.ForeHomeProduct;
+import com.j3n0.mall.model.*;
+import com.j3n0.mall.repository.CommentRepository;
+import com.j3n0.mall.repository.ProductImageRepository;
+import com.j3n0.mall.repository.PropertyValueRepository;
 import com.j3n0.mall.service.ForeProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +19,33 @@ public class ForeProductServiceImpl implements ForeProductService {
     @Autowired
     ProductDAO productDAO;
 
+    @Autowired
+    PropertyValueRepository propertyValueRepository;
+
+    @Autowired
+    ProductImageRepository productImageRepository;
+
+    @Autowired
+    CommentRepository commentRepository;
+
     @Override
     public List<ForeHomeProduct> listHomeProducts(Long cid) {
         return productDAO.listForeHomeProducts(cid);
+    }
+
+    @Override
+    public ForeProduct getForeProduct(Long pid) {
+        ForeProduct foreProduct = new ForeProduct();
+        Product product = productDAO.findById(pid).orElseThrow(RuntimeException::new);
+        List<PropertyValue> propertyValues = propertyValueRepository.findByPtid(product.getId());
+        List<Comment> comments = commentRepository.findByPid(product.getId());
+        List<ProductImage> productImages = productImageRepository.findByPid(product.getId());
+
+        foreProduct.setProduct(product);
+        foreProduct.setProductImages(productImages);
+        foreProduct.setComments(comments);
+        foreProduct.setPropertyValues(propertyValues);
+        return foreProduct;
     }
 
     @Override

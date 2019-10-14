@@ -16,4 +16,6 @@ public interface ProductDAO extends JpaRepository<Product, Long> {
             "Product p " +
             "WHERE p.cid = :cid")
     List<ForeHomeProduct> listForeHomeProducts(@Param("cid") Long cid);
+
+    List<Product> findByCid(Long cid);
 }
