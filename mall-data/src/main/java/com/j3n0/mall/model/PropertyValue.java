@@ -1,12 +1,15 @@
 package com.j3n0.mall.model;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
 
 @Entity
 @Data
-public class PropertyValues {
+@Builder
+public class PropertyValue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +22,7 @@ public class PropertyValues {
     private Long ptid;
 
     private String value;
+
+    @Tolerate
+    public PropertyValue() {}
 }
