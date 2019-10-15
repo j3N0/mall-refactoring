@@ -36,8 +36,9 @@ public class ForeProductServiceImpl implements ForeProductService {
     @Override
     public ForeProduct getForeProduct(Long pid) {
         ForeProduct foreProduct = new ForeProduct();
+        // Todo 异常处理
         Product product = productDAO.findById(pid).orElseThrow(RuntimeException::new);
-        List<PropertyValue> propertyValues = propertyValueRepository.findByPtid(product.getId());
+        List<PropertyValue> propertyValues = propertyValueRepository.findByPid(product.getId());
         List<Comment> comments = commentRepository.findByPid(product.getId());
         List<ProductImage> productImages = productImageRepository.findByPid(product.getId());
 
