@@ -56,9 +56,18 @@ public class ForeProductServiceImpl implements ForeProductService {
         return splitProducts(products);
     }
 
+    @Override
+    public int update(Long id, Product product) {
+        int count;
+        product.setId(id);
+        productDAO.save(product);
+        count = 1;
+        return count;
+    }
+
     /*
-    将产品按行切分
-    */
+        将产品按行切分
+        */
     private List<List<ForeHomeProduct>> splitProducts(List<ForeHomeProduct> products) {
         List<List<ForeHomeProduct>> productsByRow =  new ArrayList<>();
         int PRODUCT_NUMBER_EACH_ROW = 8;

@@ -17,6 +17,16 @@ public class Order {
     @Column(name = "uid")
     private Long uid;
 
+    private String address;
+
+    private String postcode;
+
+    private String consigneeName;
+
+    private String phoneNumber;
+
+    private String note;
+
     // 0 -> 待付款, 1 -> 待发货, 2 -> 已发货, 3 -> 已收货, 4 -> 已完成
     private Integer status;
 
